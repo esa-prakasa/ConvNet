@@ -7,15 +7,15 @@ from keras.layers import Flatten
 from keras.layers import Dense
 import os
 
+
+
+epochSz = 3
+dimSz = 400
+
 # Pembuatan Arsitektur Deep Learning
 
-
-
 classifier = Sequential()
-classifier.add(Conv2D(128,(3,3),input_shape=(dimSz,dimSz,3),activation='relu'))
-classifier.add(MaxPooling2D(pool_size=(2,2)))
-
-classifier.add(Conv2D(64,(3,3),activation='relu'))
+classifier.add(Conv2D(64,(3,3),input_shape=(dimSz,dimSz,3),activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2,2)))
 
 classifier.add(Conv2D(32,(3,3), activation='relu'))
@@ -29,7 +29,7 @@ classifier.add(Flatten())
 classifier.add(Dense(units =1024,activation="relu"))
 classifier.add(Dense(units =256,activation="relu"))
 classifier.add(Dense(units =128,activation="relu"))
-classifier.add(Dense(units =3,activation="softmax"))
+classifier.add(Dense(units =12,activation="softmax"))
 
 classifier.compile(optimizer ='adam', loss = 'categorical_crossentropy', metrics =['accuracy'])
 os.system('cls')  #>> for Windows
@@ -37,12 +37,12 @@ os.system('cls')  #>> for Windows
 
 classifier.summary()
 
-epochSz = 3
-dimSz = 400
+
 
 print("Epoch and Dimension size are "+str(epochSz)+" and "+str(dimSz)+" repectively.")
 
 expPath = 'C:\\Users\\INKOM06\\Documents\\GitHub\\ConvNet\\exp1020\\'
+dataPath = 'C:\\Users\\INKOM06\\Pictures\\data12div01\\'
 
 #os.chdir('/home/lgr0270013/esa/exp1014/')
 
@@ -52,9 +52,9 @@ with open(expPath+"modnet400_20.json", 'w') as f:  #>> Windows version
 
 #os.chdir('/home/lgr0270013/0D_data12div/')
 
-train_data_dir = expPath+'train'  
-valid_data_dir = expPath+'valid'  
-test_data_dir  = expPath+'test' 
+train_data_dir = dataPath+'train'  
+valid_data_dir = dataPath+'valid'  
+test_data_dir  = dataPath+'test' 
 
 
 
