@@ -10,7 +10,7 @@ import os
 
 
 epochSz = 3
-dimSz = 400
+dimSz = 300
 
 # Pembuatan Arsitektur Deep Learning
 
@@ -45,8 +45,9 @@ expPath = 'C:\\Users\\INKOM06\\Documents\\GitHub\\ConvNet\\exp1020\\'
 dataPath = 'C:\\Users\\INKOM06\\Pictures\\data12div01\\'
 
 #os.chdir('/home/lgr0270013/esa/exp1014/')
+modelFileNm = 'modnet'+str(dimSz)+'_'+str(epochSz)+'.json'
 
-with open(expPath+"modnet400_20.json", 'w') as f:  #>> Windows version
+with open(expPath+modelFileNm, 'w') as f:  #>> Windows version
     f.write(classifier.to_json())
 
 
@@ -80,8 +81,9 @@ valid_set = valid_datagen.flow_from_directory(valid_data_dir,
 
 from keras.callbacks import ModelCheckpoint
 
+bestWgFileNm = 'best_weights12_'+str(dimSz)+'_'+str(epochSz)+'.hfd5'
 
-checkpointer = ModelCheckpoint(filepath=expPath+'best_weights_wood12C400_20.hdf5', 
+checkpointer = ModelCheckpoint(filepath=expPath+bestWgFileNm, 
 	monitor = 'val_acc',
 	verbose=1, 
 	save_best_only=True)
@@ -97,6 +99,8 @@ history = classifier.fit_generator(training_set,
 
 #os.chdir('/home/lgr0270013/esa/exp1014/')
 
-classifier.save_weights(expPath+'final_weights_wood12C400_20.hdf5')
+finalWgFileNm = 'final_weights12_'+str(dimSz)+'_'+str(epochSz)+'.h5'
+
+classifier.save_weights(expPath+finalWgFileNm)
 print("Saved model to disk")
 

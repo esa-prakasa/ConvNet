@@ -10,17 +10,20 @@ from keras.models import model_from_json
 import os
 
 rootPath = 'C:\\Users\\INKOM06\\Pictures\\data12div01\\' 
+expPath = 'C:\\Users\\INKOM06\\Documents\\GitHub\\ConvNet\\exp1020\\'
 
 train_data_dir = rootPath+'train'  
 valid_data_dir = rootPath+'valid'  
 test_data_dir  = rootPath+'test' 
-model_dir      = rootPath+'exp1020mowg' 
+
+
+#model_dir      = rootPath+'exp1020mowg' 
 
 target_names = [item for item in os.listdir(train_data_dir) if os.path.isdir(os.path.join(train_data_dir, item))]
 
 
 # load json and create model
-json_file = open(model_dir+'\\'+'modnet400_30.json', 'r')  #>>> Windows version
+json_file = open(expPath+'modnet300_3.json', 'r')  #>>> Windows version
 
 
 
@@ -29,15 +32,15 @@ json_file.close()
 model = model_from_json(loaded_model_json)
 
 # load weights into new model
-#model.load_weights('/content/drive/My Drive/data12_C/woodcls_dz600_ep30_withDropOut.h5')
-model.load_weights(model_dir+'\\'+'best_weights_wood12C400_30.hdf5') #>>> Windows version
+#model.load_weights(expPath+'final_weights12_300_3.h5') #>>> Windows version
+model.load_weights(expPath+'best_weights12_300_3.hfd5') #>>> Windows version
 os.system('cls')
 target_names = sorted(target_names)
 
 
 print("Loaded model from disk")
 print(target_names)
-dimSz = 100
+dimSz = 300
 
 
 ## ============================================== >>>>>>
@@ -56,7 +59,7 @@ idxFig = 0;
 noTestedImages = 9
 
 
-for idx in range(3):
+for idx in range(12):
   print('---------------',className[idx],'-------------------')
   correctAns = 0
   for idxSp in range(noTestedImages):
