@@ -9,7 +9,7 @@ import os
 
 # Pembuatan Arsitektur Deep Learning
 
-dimSz = 100
+
 
 classifier = Sequential()
 classifier.add(Conv2D(128,(3,3),input_shape=(dimSz,dimSz,3),activation='relu'))
@@ -37,20 +37,24 @@ os.system('cls')  #>> for Windows
 
 classifier.summary()
 
-print("Demension size is "+str(dimSz))
+epochSz = 3
+dimSz = 400
 
+print("Epoch and Dimension size are "+str(epochSz)+" and "+str(dimSz)+" repectively.")
+
+expPath = 'C:\\Users\\INKOM06\\Documents\\GitHub\\ConvNet\\exp1020\\'
 
 #os.chdir('/home/lgr0270013/esa/exp1014/')
 
-with open("C:\\Users\\INKOM06\\kerasCodes\\exp1018_loc\\modnet400_30.json", 'w') as f:  #>> Windows version
+with open(expPath+"modnet400_20.json", 'w') as f:  #>> Windows version
     f.write(classifier.to_json())
 
 
 #os.chdir('/home/lgr0270013/0D_data12div/')
 
-train_data_dir = 'C:\\Users\\INKOM06\\Pictures\\data2\\train'  
-valid_data_dir = 'C:\\Users\\INKOM06\\Pictures\\data2\\valid'  
-test_data_dir = 'C:\\Users\\INKOM06\\Pictures\\data2\\test' 
+train_data_dir = expPath+'train'  
+valid_data_dir = expPath+'valid'  
+test_data_dir  = expPath+'test' 
 
 
 
@@ -77,7 +81,7 @@ valid_set = valid_datagen.flow_from_directory(valid_data_dir,
 from keras.callbacks import ModelCheckpoint
 
 
-checkpointer = ModelCheckpoint(filepath="C:\\Users\\INKOM06\\kerasCodes\\exp1018_loc\\best_weights_wood12C400_30.hdf5", 
+checkpointer = ModelCheckpoint(filepath=expPath+'best_weights_wood12C400_20.hdf5', 
 	monitor = 'val_acc',
 	verbose=1, 
 	save_best_only=True)
@@ -85,7 +89,7 @@ checkpointer = ModelCheckpoint(filepath="C:\\Users\\INKOM06\\kerasCodes\\exp1018
 
 history = classifier.fit_generator(training_set,
 	steps_per_epoch = 20,
-	epochs = 10,
+	epochs = 3,
 	callbacks=[checkpointer],
 	validation_data = valid_set,
 	validation_steps = 20)
@@ -93,6 +97,6 @@ history = classifier.fit_generator(training_set,
 
 #os.chdir('/home/lgr0270013/esa/exp1014/')
 
-classifier.save_weights("C:\\Users\\INKOM06\\kerasCodes\\exp1018_loc\\wood12C400_30.h5")
+classifier.save_weights(expPath+'final_weights_wood12C400_20.hdf5')
 print("Saved model to disk")
 
