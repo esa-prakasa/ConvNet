@@ -7,7 +7,7 @@ from keras.layers import Dense
 import os
 
 
-
+# Create a simple ConvNet mode.
 # Pembuatan Arsitektur Deep Learning
 classifier = Sequential()
 classifier.add(Conv2D(32,3,3,input_shape=(64,64,3),activation='relu'))
