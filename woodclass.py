@@ -21,7 +21,7 @@ os.system('clear')
 
 
 
-#Data Augmentation
+#Data Augmentation. This part is used to create augemented images for training and validation purposes.
 from keras.preprocessing.image import ImageDataGenerator
 train_datagen = ImageDataGenerator(rescale = 1./255,
 	shear_range = 0.02,
