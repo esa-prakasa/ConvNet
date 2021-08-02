@@ -7,7 +7,6 @@ from keras.layers import Flatten
 from keras.layers import Dense
 import os
 
-
 # Create a simple ConvNet mode.
 # Pembuatan Arsitektur Deep Learning
 classifier = Sequential()
@@ -18,9 +17,6 @@ classifier.add(Dense(output_dim =128,activation='relu'))
 classifier.add(Dense(output_dim =1,activation='sigmoid'))
 classifier.compile(optimizer ='adam', loss = 'binary_crossentropy', metrics =['accuracy'])
 os.system('clear') 
-
-
-
 
 #Data Augmentation. This part is used to create augemented images for training and validation purposes.
 from keras.preprocessing.image import ImageDataGenerator
