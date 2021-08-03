@@ -1,6 +1,5 @@
 # Load dan mount Google Drive
 from google.colab import drive
-
 # Pilihan user authorization dengan menggunakan account Google
 drive.mount('/content/drive')
 
