@@ -17,7 +17,6 @@ from keras import backend as k
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard, EarlyStopping
 import os
 
-
 img_width, img_height = 100, 100
 train_data_dir = "/content/drive/My Drive/xxxx/train/"
 validation_data_dir = "/content/drive/My Drive/xxxx/valid/"
